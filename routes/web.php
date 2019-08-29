@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', 'QuestionsController@index')->name('question.index');
+
+Route::post('question/create', 'QuestionsController@store')->name('question.create');
+Route::get('question/{id}', 'QuestionsController@show')->name('question.show');
