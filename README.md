@@ -2,6 +2,8 @@
 
 Application for the VeganHacktivists' team. Hope you enjoy it!
 
+Demo: https://fast-earth-19548.herokuapp.com/
+
 ### What did I use to code this?
 -   PHP (Laravel)
 -   Bootstrap
