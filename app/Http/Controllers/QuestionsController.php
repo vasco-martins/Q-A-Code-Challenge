@@ -2,24 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class QuestionsController extends Controller
 {
 
     public function index() {
 
-        $questions = Question::orderBy('created_at')->get();
+        $placeholders = ['Why do I love chickpeas so much?', 'Are vegans crazy?', 'But... where do I get the protein from?', 'Do plants feel pain?', 'Do vegans eat fish?'];
+        $rndplaceholder = Arr::random($placeholders);
 
-        return view('pages.home', ["questions" => $questions]);
+        $questions = Question::orderBy('created_at', 'DESC')->get();
+
+
+        return view('pages.home', ["questions" => $questions, "placeholder" => $rndplaceholder]);
 
     }
     public function show($id) {
 
         $question = Question::where('id', $id)->first();
 
-        return view('pages.question', ["question" => $question]);
+        return view('pages.question', ["question" => $question, "answers" => $question->answers]);
     }
 
     public function store(Request $request)

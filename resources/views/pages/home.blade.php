@@ -8,7 +8,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="question">Ask a Question</label>
-                    <input type="text" name="question" class="form-control" id="question" aria-describedby="emailHelp" placeholder="Ask your question" required>
+                    <input type="text" name="question" class="form-control" id="question" aria-describedby="emailHelp" placeholder="{{$placeholder}}" required>
 
                     @error('question')
                         <p class="text-danger"><small>{{ $message }}</small></p>
@@ -25,19 +25,18 @@
     <h1 class="mt-4">Questions</h1>
 
 
-    <div class="card-columns mt-4">
-
-    @foreach ($questions as $question)
-            <div class="card p-3">
-                <blockquote class="blockquote mb-0 card-body">
-                    <p>{{$question->question}}</p>
-                    <footer class="footer">
-                        <span class="badge badge-primary">Answers <span class="badge badge-light">9</span></span>
-                        <a href="question/{{$question->id}}" class="stretched-link"></a>
-                    </footer>
-                </blockquote>
-            </div>
-    @endforeach
-    </div>
+        <div class="d-flex justify-content-start flex-wrap ">
+        @foreach ($questions as $question)
+                <div class="card card-block flex-fill p-3 m-2" >
+                    <blockquote class="blockquote mb-0 card-body">
+                        <p>{{$question->question}}</p>
+                        <footer class="footer">
+                            <span class="badge badge-primary">Answers <span class="badge badge-light">{{ $question->answers->count() }}</span></span>
+                            <a href="question/{{$question->id}}" class="stretched-link"></a>
+                        </footer>
+                    </blockquote>
+                </div>
+        @endforeach
+        </div>
 
 @stop

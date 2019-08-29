@@ -15,3 +15,5 @@ Route::get('/', 'QuestionsController@index')->name('question.index');
 
 Route::post('question/create', 'QuestionsController@store')->name('question.create');
 Route::get('question/{id}', 'QuestionsController@show')->name('question.show');
+
+Route::post('answer/create/{id}', 'AnswersController@store')->name('answer.create');

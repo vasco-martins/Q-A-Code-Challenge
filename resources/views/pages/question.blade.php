@@ -9,20 +9,28 @@
                 <h2 class="card-title">{{$question->question}}</h2>
                 <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ $question->created_at->format(' d M Y') }}</h6>
 
-                <form>
+                <form action="/answer/create/{{$question->id}}" method="POST">
+                    @csrf
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Answer</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label for="answer">Answer</label>
+                        <textarea class="form-control" name="answer" id="answer" rows="3"></textarea>
+
+                        @error('answer')
+                            <p class="text-danger"><small>{{ $message }}</small></p>
+                        @enderror
                     </div>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </li>
 
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+
+            @if($answers->isEmpty())
+                <li class="list-group-item text-danger">No answers yet... Why don't you cook some tofu while you're waiting?</li>
+            @else
+                @foreach ($answers as $answer)
+                    <li class="list-group-item">{{$answer->answer}}</li>
+                @endforeach
+            @endif
         </ul>
     </div>
 @stop

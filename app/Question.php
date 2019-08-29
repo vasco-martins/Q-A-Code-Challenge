@@ -12,4 +12,11 @@ class Question extends Model
     ];
 
     protected $table = 'questions';
+
+    /**
+     * Get the answers of the question
+     */
+    public function answers() {
+        return $this->hasMany('App\Answer');
+    }
 }
