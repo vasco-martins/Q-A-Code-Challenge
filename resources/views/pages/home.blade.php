@@ -5,34 +5,39 @@
     <div class="card mt-4">
         <div class="card-body">
             <form action="/question/create" method="POST">
+                @csrf
                 <div class="form-group">
-                    <label for="InputQuestion">Ask a Question</label>
-                    <input type="text" class="form-control" id="InputQuestion" aria-describedby="emailHelp" placeholder="Ask your question">
+                    <label for="question">Ask a Question</label>
+                    <input type="text" name="question" class="form-control" id="question" aria-describedby="emailHelp" placeholder="Ask your question" required>
+
+                    @error('question')
+                        <p class="text-danger"><small>{{ $message }}</small></p>
+                    @enderror
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+
+
         </div>
     </div>
 
+    <h1 class="mt-4">Questions</h1>
+
+
     <div class="card-columns mt-4">
-        <div class="card p-3">
-            <blockquote class="blockquote mb-0 card-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <footer class="footer">
+
+    @foreach ($questions as $question)
+            <div class="card p-3">
+                <blockquote class="blockquote mb-0 card-body">
+                    <p>{{$question->question}}</p>
+                    <footer class="footer">
                         <span class="badge badge-primary">Answers <span class="badge badge-light">9</span></span>
-                </footer>
-            </blockquote>
-        </div>
+                        <a href="question/{{$question->id}}" class="stretched-link"></a>
+                    </footer>
+                </blockquote>
+            </div>
+    @endforeach
     </div>
 
 @stop
