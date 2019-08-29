@@ -6,7 +6,7 @@
 <body>
 
     <nav class="navbar navbar-light bg-primary  mx-auto">
-        <a class="navbar-brand mx-auto text-white" href="#">
+        <a class="navbar-brand mx-auto text-white" href="/">
             Q&A
         </a>
     </nav>
