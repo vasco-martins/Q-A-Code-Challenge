@@ -11,3 +11,5 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .idea/
+.idea/workspace.xml
+.idea/Q-A-Code-Challenge.iml
