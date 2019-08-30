@@ -25,6 +25,8 @@ class QuestionsController extends Controller
 
         $question = Question::where('id', $id)->first();
 
+        if($question == null) return abort(404);
+
         return view('pages.question', ["question" => $question, "answers" => $question->answers]);
     }
 
